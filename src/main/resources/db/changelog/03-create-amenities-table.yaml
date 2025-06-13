@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: mrfurion
+      changes:
+        - createTable:
+            tableName: amenities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: free_parking
+                  type: boolean
+              - column:
+                  name: free_wifi
+                  type: boolean
+              - column:
+                  name: non_smoking_rooms
+                  type: boolean
+              - column:
+                  name: concierge
+                  type: boolean
+              - column:
+                  name: on_site_restaurant
+                  type: boolean
+              - column:
+                  name: fitness_center
+                  type: boolean
+              - column:
+                  name: pet_friendly_rooms
+                  type: boolean
+              - column:
+                  name: room_service
+                  type: boolean
+              - column:
+                  name: business_center
+                  type: boolean
+              - column:
+                  name: meeting_rooms
+                  type: boolean
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+            foreignKeyConstraints:
+              - name: fk_amenities_hotel
+                references:
+                  table: hotel
+                  columns: id
+                baseColumnNames: hotel_id
+                onDelete: CASCADE

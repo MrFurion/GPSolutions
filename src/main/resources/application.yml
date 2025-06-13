@@ -1,0 +1,16 @@
+server:
+  port: 8092
+
+spring:
+  profiles:
+    active: dev, prod
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    change-log: db/db.changelog-master.yaml
+    enabled: true

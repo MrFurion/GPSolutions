@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: mrfurion
+      changes:
+        - createTable:
+            tableName: hotel
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: brand
+                  type: varchar(255)
+  - changeSet:
+      id: 2
+      author: mrfurion
+      changes:
+        - createTable:
+            tableName: arrival_times
+            columns:
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: check_in
+                  type: varchar(255)
+              - column:
+                  name: check_out
+                  type: varchar(255)
+            foreignKeyConstraints:
+              - name: fk_arrival_times_hotel
+                references:
+                  table: hotel
+                  columns: id
+                baseColumnNames: hotel_id
+                onDelete: CASCADE

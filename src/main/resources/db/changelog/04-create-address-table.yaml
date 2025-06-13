@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: mrfurion
+      changes:
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: house_number
+                  type: varchar(255)
+              - column:
+                  name: street
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(255)
+              - column:
+                  name: country
+                  type: varchar(255)
+              - column:
+                  name: postal_code
+                  type: varchar(255)
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+            foreignKeyConstraints:
+              - name: fk_address_hotel
+                references:
+                  table: hotel
+                  columns: id
+                baseColumnNames: hotel_id
+                onDelete: CASCADE
