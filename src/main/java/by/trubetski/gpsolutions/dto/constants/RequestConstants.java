@@ -21,9 +21,4 @@ public class RequestConstants {
     public static final String CHECK_IN_TIME_MUST_BE_IN_24_HOUR_FORMAT_HH_MM_E_G_14_00 = "Check-in time must be in 24-hour format HH:mm (e.g., 14:00)";
     public static final String CHECK_OUT_TIME_MUST_BE_IN_24_HOUR_FORMAT_HH_MM_E_G_12_00 = "Check-out time must be in 24-hour format HH:mm (e.g., 12:00)";
     public static final String TIME = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$";
-    public static final String MESSAGE_FOR_AMENITIES_FIELD = "Amenities must be one of: Free parking, Free WiFi, Non-smoking rooms, " +
-                                                             "Concierge, On-site restaurant, Fitness center, Pet-friendly rooms, " +
-                                                             "Room service, Business center, Meeting rooms";
-    public static final String PATTERN_FOR_AMENITIES_FIELD = "^(Free parking|Free WiFi|Non-smoking rooms|Concierge|On-site restaurant|Fitness center" +
-                                                             "|Pet-friendly rooms|Room service|Business center|Meeting rooms)?$";
 }

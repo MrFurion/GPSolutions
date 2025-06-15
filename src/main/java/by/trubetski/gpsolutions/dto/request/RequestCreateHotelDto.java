@@ -12,7 +12,6 @@ import static by.trubetski.gpsolutions.dto.constants.RequestConstants.SHOULD_NOT
 
 @Data
 public class RequestCreateHotelDto {
-
     @NotEmpty(message = NAME + SHOULD_NOT_BE_EMPTY)
     @Size(min = 5, max = 255, message = NAME + SHOULD_BETWEEN_5_AND_255_CHARACTER)
     private String name;

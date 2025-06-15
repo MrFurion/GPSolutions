@@ -28,5 +28,5 @@ public class RequestAddressDto {
     private String country;
     @NotEmpty(message = POSTAL_CODE + SHOULD_NOT_BE_EMPTY)
     @Size(min = 1, max = 255, message = POSTAL_CODE + SHOULD_BETWEEN_1_AND_255_CHARACTER)
-    private String postalCode;
+    private String postCode;
 }

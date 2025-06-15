@@ -6,20 +6,24 @@ import by.trubetski.gpsolutions.dto.request.RequestContactsDto;
 import by.trubetski.gpsolutions.dto.request.RequestCreateHotelDto;
 import by.trubetski.gpsolutions.dto.response.ResponseAllHotelsDto;
 import by.trubetski.gpsolutions.dto.response.ResponseArrivalTimeDto;
+import by.trubetski.gpsolutions.dto.response.ResponseContactsDto;
 import by.trubetski.gpsolutions.dto.response.ResponseCreateHotelDto;
 import by.trubetski.gpsolutions.dto.response.ResponseHotelDto;
 import by.trubetski.gpsolutions.models.Address;
 import by.trubetski.gpsolutions.models.ArrivalTime;
 import by.trubetski.gpsolutions.models.Contacts;
 import by.trubetski.gpsolutions.models.Hotel;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
@@ -28,7 +32,7 @@ public interface HotelMapper {
     HotelMapper INSTANCE = Mappers.getMapper(HotelMapper.class);
 
     @Mapping(source = "arrivalTimes", target = "arrivalTime", qualifiedByName = "mapArrivalTimesToArrivalTimeDto")
-    @Mapping(source = "amenities", target = "amenities")
+    @Mapping(source = "contacts", target = "contacts", qualifiedByName = "mapContactsToResponseContactsDto")
     ResponseHotelDto toDto(Hotel hotel);
 
     ResponseArrivalTimeDto toArrivalTimeDto(ArrivalTime arrivalTime);
@@ -42,7 +46,7 @@ public interface HotelMapper {
     ResponseCreateHotelDto toCreateHotelDto(Hotel hotel);
 
     @Mapping(source = "address", target = "address")
-    @Mapping(source = "contacts", target = "contacts", qualifiedByName = "toContactsList")
+
     @Mapping(source = "arrivalTime", target = "arrivalTimes", qualifiedByName = "toArrivalTimeSet")
     Hotel toHotel(RequestCreateHotelDto requestCreateHotelDto);
 
@@ -64,17 +68,28 @@ public interface HotelMapper {
                 address.getHouseNumber(),
                 address.getStreet(),
                 address.getCity(),
-                address.getPostalCode(),
+                address.getPostCode(),
                 address.getCountry()
         ).trim();
     }
 
     @Named("mapContactsToPhone")
-    default String mapContactsToPhone(List<Contacts> contacts) {
-        if (contacts == null || contacts.isEmpty()) {
+    default String mapContactsToPhone(Contacts contacts) {
+        if (contacts == null) {
             return null;
         }
-        return contacts.getFirst().getPhone();
+        return contacts.getPhone();
+    }
+
+    @Named("mapContactsToResponseContactsDto")
+    default ResponseContactsDto mapContactsToResponseContactsDto(Contacts contacts) {
+        if (contacts == null) {
+            return null;
+        }
+        ResponseContactsDto dto = new ResponseContactsDto();
+        dto.setPhone(contacts.getPhone());
+        dto.setEmail(contacts.getEmail());
+        return dto;
     }
 
     @Mapping(target = "id", ignore = true)
@@ -86,18 +101,23 @@ public interface HotelMapper {
 
     ArrivalTime toArrivalTime(RequestArrivalTimeDto requestArrivalTimeDto);
 
-    @Named("toContactsList")
-    default List<Contacts> toContactsList(RequestContactsDto contactsDto) {
-        if (contactsDto == null) return Collections.emptyList();
-        Contacts contacts = toContacts(contactsDto);
-        contacts.setHotel(null);
-        return Collections.singletonList(contacts);
-    }
-
     @Named("toArrivalTimeSet")
     default Set<ArrivalTime> toArrivalTimeSet(RequestArrivalTimeDto arrivalTimeDto) {
         if (arrivalTimeDto == null) return Collections.emptySet();
         ArrivalTime arrivalTime = toArrivalTime(arrivalTimeDto);
         return Collections.singleton(new ArrivalTime(arrivalTime.getCheckIn(), arrivalTime.getCheckOut()));
+    }
+
+    @AfterMapping
+    default void afterMapping(@MappingTarget ResponseHotelDto dto) {
+        if (dto.getAmenities() != null && !dto.getAmenities().isEmpty()) {
+            String amenitiesStr = dto.getAmenities().get(0);
+            if (amenitiesStr != null && amenitiesStr.startsWith("[") && amenitiesStr.endsWith("]")) {
+                String content = amenitiesStr.substring(1, amenitiesStr.length() - 1);
+                dto.setAmenities(Arrays.asList(content.split(", ")));
+            }
+        } else {
+            dto.setAmenities(new ArrayList<>());
+        }
     }
 }

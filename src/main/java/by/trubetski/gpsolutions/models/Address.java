@@ -1,5 +1,6 @@
 package by.trubetski.gpsolutions.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,11 +28,12 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String houseNumber;
+    private int houseNumber;
     private String street;
     private String city;
     private String country;
-    private String postalCode;
+    @Column(name = "postal_code")
+    private String postCode;
     @OneToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;

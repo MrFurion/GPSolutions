@@ -5,18 +5,19 @@ databaseChangeLog:
       changes:
         - sql:
             sql: |
-              INSERT INTO hotel (name, description) VALUES ('Grand Hotel', 'Luxury hotel in the city center');
-              INSERT INTO hotel (name, description) VALUES ('Beach Resort', 'Oceanfront resort with stunning views');
-              INSERT INTO hotel (name, description) VALUES ('Mountain Lodge', 'Cozy lodge in the mountains');
-              INSERT INTO hotel (name, description) VALUES ('City Inn', 'Budget-friendly city hotel');
-              INSERT INTO hotel (name, description) VALUES ('Riverside Spa', 'Relaxation with riverside views');
-              INSERT INTO hotel (name, description) VALUES ('Sky Tower Hotel', 'High-rise hotel with skyline views');
-              INSERT INTO hotel (name, description) VALUES ('Forest Retreat', 'Nature-inspired retreat');
-              INSERT INTO hotel (name, description) VALUES ('Harbor View', 'Hotel with harbor scenery');
-              INSERT INTO hotel (name, description) VALUES ('Downtown Plaza', 'Central hotel with shopping access');
-              INSERT INTO hotel (name, description) VALUES ('Lake House', 'Tranquil stay by the lake');
+              INSERT INTO hotel (name, description, brand) VALUES ('Grand Hotel', 'Luxury hotel in the city center', 'Independent');
+              INSERT INTO hotel (name, description, brand) VALUES ('Beach Resort', 'Oceanfront resort with stunning views', 'Marriott');
+              INSERT INTO hotel (name, description, brand) VALUES ('Mountain Lodge', 'Cozy lodge in the mountains', 'Hilton');
+              INSERT INTO hotel (name, description, brand) VALUES ('City Inn', 'Budget-friendly city hotel', 'Best Western');
+              INSERT INTO hotel (name, description, brand) VALUES ('Riverside Spa', 'Relaxation with riverside views', 'Hyatt');
+              INSERT INTO hotel (name, description, brand) VALUES ('Sky Tower Hotel', 'High-rise hotel with skyline views', 'Sheraton');
+              INSERT INTO hotel (name, description, brand) VALUES ('Forest Retreat', 'Nature-inspired retreat', 'Accor');
+              INSERT INTO hotel (name, description, brand) VALUES ('Harbor View', 'Hotel with harbor scenery', 'Radisson');
+              INSERT INTO hotel (name, description, brand) VALUES ('Downtown Plaza', 'Central hotel with shopping access', 'Holiday Inn');
+              INSERT INTO hotel (name, description, brand) VALUES ('Lake House', 'Tranquil stay by the lake', 'InterContinental');
         - rollback:
             sql: DELETE FROM hotel WHERE name IN ('Grand Hotel', 'Beach Resort', 'Mountain Lodge', 'City Inn', 'Riverside Spa', 'Sky Tower Hotel', 'Forest Retreat', 'Harbor View', 'Downtown Plaza', 'Lake House');
+
   - changeSet:
       id: 7
       author: mrfurion
@@ -35,24 +36,7 @@ databaseChangeLog:
               INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('9', 'Lake Shore', 'Minneapolis', 'USA', '55401', 10);
         - rollback:
             sql: DELETE FROM address WHERE hotel_id BETWEEN 1 AND 10;
-  - changeSet:
-      id: 8
-      author: mrfurion
-      changes:
-        - sql:
-            sql: |
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, true, true, true, true, true, false, true, true, true, 1);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, false, true, false, true, false, true, false, false, false, 2);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, true, false, true, false, true, false, true, true, false, 3);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (false, true, true, false, true, false, true, false, false, true, 4);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, false, true, true, false, true, false, true, true, false, 5);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (false, true, false, true, true, false, true, false, true, true, 6);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, true, true, false, false, true, false, true, false, false, 7);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (false, false, true, true, true, false, true, false, true, true, 8);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (true, true, false, false, true, true, false, true, false, true, 9);
-              INSERT INTO amenities (free_parking, free_wifi, non_smoking_rooms, concierge, on_site_restaurant, fitness_center, pet_friendly_rooms, room_service, business_center, meeting_rooms, hotel_id) VALUES (false, true, true, true, false, false, true, true, true, false, 10);
-        - rollback:
-            sql: DELETE FROM amenities WHERE hotel_id BETWEEN 1 AND 10;
+
   - changeSet:
       id: 9
       author: mrfurion
@@ -71,6 +55,7 @@ databaseChangeLog:
               INSERT INTO contacts (email, phone, hotel_id) VALUES ('lake@house.com', '+1-612-555-1010', 10);
         - rollback:
             sql: DELETE FROM contacts WHERE hotel_id BETWEEN 1 AND 10;
+
   - changeSet:
       id: 10
       author: mrfurion
@@ -89,3 +74,39 @@ databaseChangeLog:
               INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (10, '16:00', '10:00');
         - rollback:
             sql: DELETE FROM arrival_times WHERE hotel_id BETWEEN 1 AND 10;
+
+  - changeSet:
+      id: 11
+      author: mrfurion
+      changes:
+        - sql:
+            sql: |
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (1, 'Free parking'), (1, 'Free WiFi'), (1, 'Non-smoking rooms'), (1, 'Concierge'), (1, 'On-site restaurant'), 
+              (1, 'Fitness center'), (1, 'Room service'), (1, 'Business center'), (1, 'Meeting rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (2, 'Free parking'), (2, 'Non-smoking rooms'), (2, 'On-site restaurant'), (2, 'Pet-friendly rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (3, 'Free parking'), (3, 'Free WiFi'), (3, 'Concierge'), (3, 'Fitness center'), (3, 'Room service'), 
+              (3, 'Business center');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (4, 'Free WiFi'), (4, 'Non-smoking rooms'), (4, 'On-site restaurant'), (4, 'Pet-friendly rooms'), 
+              (4, 'Meeting rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (5, 'Free parking'), (5, 'Non-smoking rooms'), (5, 'Concierge'), (5, 'Fitness center'), (5, 'Room service'), 
+              (5, 'Business center');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (6, 'Free WiFi'), (6, 'Concierge'), (6, 'On-site restaurant'), (6, 'Business center'), (6, 'Meeting rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (7, 'Free parking'), (7, 'Free WiFi'), (7, 'Non-smoking rooms'), (7, 'Fitness center'), (7, 'Room service');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (8, 'Non-smoking rooms'), (8, 'Concierge'), (8, 'On-site restaurant'), (8, 'Pet-friendly rooms'), 
+              (8, 'Business center'), (8, 'Meeting rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (9, 'Free parking'), (9, 'Free WiFi'), (9, 'On-site restaurant'), (9, 'Fitness center'), (9, 'Room service'), 
+              (9, 'Meeting rooms');
+              INSERT INTO hotel_amenities (hotel_id, amenity) VALUES 
+              (10, 'Free WiFi'), (10, 'Non-smoking rooms'), (10, 'Concierge'), (10, 'Pet-friendly rooms'), 
+              (10, 'Room service'), (10, 'Business center');
+        - rollback:
+            sql: DELETE FROM hotel_amenities WHERE hotel_id BETWEEN 1 AND 10;

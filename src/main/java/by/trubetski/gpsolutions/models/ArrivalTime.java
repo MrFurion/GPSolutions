@@ -14,7 +14,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ArrivalTime {
-
     private String checkIn;
     private String checkOut;
 }

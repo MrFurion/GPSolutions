@@ -1,0 +1,113 @@
+DELETE FROM hotel_amenities;
+DELETE FROM arrival_times;
+DELETE FROM contacts;
+DELETE FROM address;
+DELETE FROM hotel;
+
+INSERT INTO hotel (name, description, brand) VALUES ('Grand Hotel', 'Luxury hotel in the city center', 'Independent');
+INSERT INTO hotel (name, description, brand) VALUES ('Beach Resort', 'Oceanfront resort with stunning views', 'Marriott');
+INSERT INTO hotel (name, description, brand) VALUES ('Mountain Lodge', 'Cozy lodge in the mountains', 'Hilton');
+INSERT INTO hotel (name, description, brand) VALUES ('City Inn', 'Budget-friendly city hotel', 'Best Western');
+INSERT INTO hotel (name, description, brand) VALUES ('Riverside Spa', 'Relaxation with riverside views', 'Hyatt');
+INSERT INTO hotel (name, description, brand) VALUES ('Sky Tower Hotel', 'High-rise hotel with skyline views', 'Sheraton');
+INSERT INTO hotel (name, description, brand) VALUES ('Forest Retreat', 'Nature-inspired retreat', 'Accor');
+INSERT INTO hotel (name, description, brand) VALUES ('Harbor View', 'Hotel with harbor scenery', 'Radisson');
+INSERT INTO hotel (name, description, brand) VALUES ('Downtown Plaza', 'Central hotel with shopping access', 'Holiday Inn');
+INSERT INTO hotel (name, description, brand) VALUES ('Lake House', 'Tranquil stay by the lake', 'InterContinental');
+
+
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('101', 'Main St', 'New York', 'USA', '10001', 1);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('22', 'Ocean Dr', 'Miami', 'USA', '33101', 2);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('5', 'Pine Rd', 'Aspen', 'USA', '81611', 3);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('300', 'Broadway', 'Chicago', 'USA', '60601', 4);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('7', 'River Ln', 'Portland', 'USA', '97201', 5);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('50', 'Sky Tower Ave', 'Los Angeles', 'USA', '90001', 6);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('12', 'Forest Path', 'Seattle', 'USA', '98101', 7);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('3', 'Harbor St', 'Boston', 'USA', '02101', 8);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('150', 'Plaza Dr', 'San Francisco', 'USA', '94101', 9);
+INSERT INTO address (house_number, street, city, country, postal_code, hotel_id) VALUES ('9', 'Lake Shore', 'Minneapolis', 'USA', '55401', 10);
+
+
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('grand@hotel.com', '+1-212-555-0101', 1);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('beach@resort.com', '+1-305-555-0202', 2);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('mountain@lodge.com', '+1-970-555-0303', 3);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('city@inn.com', '+1-312-555-0404', 4);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('river@spa.com', '+1-503-555-0505', 5);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('sky@tower.com', '+1-213-555-0606', 6);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('forest@retreat.com', '+1-206-555-0707', 7);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('harbor@view.com', '+1-617-555-0808', 8);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('downtown@plaza.com', '+1-415-555-0909', 9);
+INSERT INTO contacts (email, phone, hotel_id) VALUES ('lake@house.com', '+1-612-555-1010', 10);
+
+
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (1, '14:00', '12:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (2, '15:00', '11:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (3, '16:00', '10:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (4, '14:30', '12:30');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (5, '15:30', '11:30');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (6, '13:00', '11:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (7, '16:30', '10:30');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (8, '14:00', '12:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (9, '15:00', '11:00');
+INSERT INTO arrival_times (hotel_id, check_in, check_out) VALUES (10, '16:00', '10:00');
+
+
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Fitness center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Business center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (1, 'Meeting rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (2, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (2, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (2, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (2, 'Pet-friendly rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Fitness center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (3, 'Business center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (4, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (4, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (4, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (4, 'Pet-friendly rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (4, 'Meeting rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Fitness center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (5, 'Business center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (6, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (6, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (6, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (6, 'Business center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (6, 'Meeting rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (7, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (7, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (7, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (7, 'Fitness center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (7, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'Pet-friendly rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'Business center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (8, 'Meeting rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'Free parking');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'On-site restaurant');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'Fitness center');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (9, 'Meeting rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Free WiFi');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Non-smoking rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Concierge');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Pet-friendly rooms');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Room service');
+INSERT INTO hotel_amenities (hotel_id, amenity) VALUES (10, 'Business center');
+

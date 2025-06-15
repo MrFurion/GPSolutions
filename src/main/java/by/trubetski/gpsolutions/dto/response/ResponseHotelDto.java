@@ -12,7 +12,7 @@ public class ResponseHotelDto {
     private String description;
     private String brand;
     private ResponseAddressDto address;
-    private List<ResponseContactsDto> contacts = new ArrayList<>();
+    private ResponseContactsDto contacts;
     private ResponseArrivalTimeDto arrivalTime;
-    private ResponseAmenitiesDto amenities;
+    private List<String> amenities = new ArrayList<>();
 }

@@ -22,6 +22,7 @@ databaseChangeLog:
               - column:
                   name: brand
                   type: varchar(255)
+
   - changeSet:
       id: 2
       author: mrfurion
@@ -42,6 +43,31 @@ databaseChangeLog:
                   type: varchar(255)
             foreignKeyConstraints:
               - name: fk_arrival_times_hotel
+                references:
+                  table: hotel
+                  columns: id
+                baseColumnNames: hotel_id
+                onDelete: CASCADE
+
+  - changeSet:
+      id: 3
+      author: mrfurion
+      changes:
+        - createTable:
+            tableName: hotel_amenities
+            columns:
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amenity
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+            foreignKeyConstraints:
+              - name: fk_hotel_amenities_hotel
                 references:
                   table: hotel
                   columns: id
